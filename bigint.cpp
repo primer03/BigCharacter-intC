@@ -139,23 +139,39 @@ string number2(string nums,int co){
 
 int main(){
     string stri,str1,str2;
+    bool checkin = false;
     char bigint[10] = {};
+    char charnum[10];
     string strnums[10][10] = {};
     string strn;
-    cout << "Enter Number : ";
-    cin >> strn;
     string strco;
-
-    for (int i = 0; i < 10; i++)
-    {
-       for (int j = 0; j < strn.size(); j++)
-       {
-        strco = strn[j];
-        strnums[i][j] = number2(strco,i);
-        SetConsoleTextAttribute(h,6);
-        cout << strnums[i][j] << " ";
-       }
-       cout << endl;
-    }
-    SetConsoleTextAttribute(h,7);
+    do{
+        cout << "Enter Number : ";
+        cin >> strn;
+        for (int x = 0; x < strn.size(); x++)
+        {
+            charnum[x] = strn[x];
+            if(int(charnum[x]) < 48 || int(charnum[x]) > 57){
+                checkin = false;
+                break;
+            }else{
+                checkin = true;
+            }
+        }
+         system("CLS");
+        if(checkin == true){
+        checkin = false;
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < strn.size(); j++)
+            {
+                strco = strn[j];
+                strnums[i][j] = number2(strco,i);
+                SetConsoleTextAttribute(h,6);
+                cout << strnums[i][j] << " ";
+            }
+            cout << endl;
+            }
+        }
+        SetConsoleTextAttribute(h,7);
+    } while (checkin == false);
 }
